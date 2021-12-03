@@ -1,0 +1,14 @@
+version: '3'
+services:
+        flowcyto-environment:
+                image: flowcyto-env:latest
+                # environment:
+                #  - DISPLAY=${DISPLAY}
+                ports:
+                 - 8888:8888
+                volumes:
+                 - /home/luna.kuleuven.be/u0128401:/root/host_home # change the path before ":" with the volume you want to mount
+                #  - /tmp/.X11-unix:/tmp/.X11-unix # start GUIs in Docker
+                working_dir: '/root/host_home'
+                # privileged: true # to start cytoflow GUI
+                container_name:   flowcyto-environment

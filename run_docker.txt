@@ -1,0 +1,36 @@
+sudo docker build --no-cache -t gnasello/flowcyto-env:latest .
+sudo docker images
+sudo docker rmi imageID -f
+
+
+sudo docker pull gnasello/sc-env
+
+xhost +local:root
+
+sudo docker run -it --rm -p 7777:7777 \
+                --device=/dev/dri:/dev/dri -e DISPLAY=$DISPLAY \
+                -v /tmp/.X11-unix:/tmp/.X11-unix:ro --volume $HOME:/root/host_home \
+                --workdir /root/host_home \
+                gnasello/flowcyto-env:latest
+
+xhost -local:root
+
+
+---------- Alternative with docker-compose --------------
+
+You need the docker-compose.yaml file
+
+xhost +local:root
+sudo docker-compose up -d
+sudo docker-compose run --service-ports flowcyto-environment
+
+When the work is finished, this command will stop your containers, 
+but it also removes the stopped containers as well as any networks that were created.
+The -v flag to remove all volumes too
+
+sudo docker-compose down -v
+xhost -local:root
+
+conda install -c bpteague cytoflow
+
+

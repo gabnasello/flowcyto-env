@@ -1,0 +1,32 @@
+name: r-flowcyto
+channels:
+ - conda-forge
+ - bioconda
+ - cytoflow
+ - r
+dependencies:
+ - r-base
+ - r-essentials
+ - r-biocmanager
+ - r-devtools
+ - r-remotes
+ - r-svglite
+ - r-latex2exp
+ - r-gridextra
+ - r-data.table
+ - r-ggplot2
+ - r-rstatix
+ - r-ggpubr
+ - r-ggsci
+ - bioconductor-flowcore
+ - bioconductor-opencyto
+ - bioconductor-ggcyto
+ - bioconductor-flowai
+ - bioconductor-flowdensity
+ - jupyterlab
+ - jupyter_contrib_nbextensions
+ - r-repr
+ - jupytext
+ - pip
+ - pip:
+   - lckr-jupyterlab-variableinspector

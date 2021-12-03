@@ -1,0 +1,11 @@
+name: py-flowcyto
+channels:
+ - conda-forge
+ - cytoflow
+dependencies:
+ - jupyterlab
+ - jupyter_contrib_nbextensions
+ - cytoflow
+ - pip
+ - pip:
+    - lckr-jupyterlab-variableinspector
