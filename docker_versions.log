@@ -1,0 +1,49 @@
+-------------------------------
+v. 20211203
+
+## r-flowcyto environment
+
+R packages installed via conda:
+
+ - r-base
+ - r-essentials
+ - r-biocmanager
+ - r-devtools
+ - r-remotes
+ - r-svglite
+ - r-latex2exp
+ - r-gridextra
+ - r-data.table
+ - r-ggplot2
+ - r-rstatix
+ - r-ggpubr
+ - r-ggsci
+ - bioconductor-flowcore
+ - bioconductor-opencyto
+ - bioconductor-ggcyto
+ - bioconductor-flowai
+ - bioconductor-flowdensity
+ - jupyterlab
+ - jupyter_contrib_nbextensions
+ - r-repr
+ - jupytext
+ - pip
+ - pip:
+   - lckr-jupyterlab-variableinspector
+
+R packages installed from R:
+
+ - cytoverse
+ - CytoExploreR
+ - CytoExploreRData
+
+## py-flowcyto environment
+
+Python packages:
+
+ - jupyterlab
+ - jupyter_contrib_nbextensions
+ - cytoflow
+ - pip
+ - pip:
+    - lckr-jupyterlab-variableinspector
