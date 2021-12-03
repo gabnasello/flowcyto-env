@@ -18,6 +18,6 @@ and run the following command to build the image (you might need sudo privileges
 
 ```docker build --no-cache -t flowcyto-env:latest .```
 
-Then you can follow the instructions in the [Docker repository](https://hub.docker.com/repository/docker/gnasello/imagepy-env) to use the virtual environments.
+Then you can follow the instructions in the [Docker repository](https://hub.docker.com/repository/docker/gnasello/flowcyto-env) to use the virtual environments.
 
 Enjoy flow cytometry!
