@@ -1,4 +1,32 @@
 -------------------------------
+v. 20220117
+
+New Docker container from dhammill/cytoexplorer:latest
+
+- Python and R are installed without conda manager or virtual environments
+
+Python packages:
+
+nbconvert==5.6.1
+jupyterlab==2.2.10
+
+
+R libraries added to dhammill/cytoexplorer:latest:
+
+- devtools
+- repr
+- svglite
+- latex2exp
+- rstatix
+- ggpubr
+- ggsci
+
+- RGLab/cytoqc
+
+-IRdisplay
+-IRkernel
+
+-------------------------------
 v. 20211203
 
 ## r-flowcyto environment

@@ -1,0 +1,2 @@
+nbconvert==5.6.1
+jupyterlab==2.2.10

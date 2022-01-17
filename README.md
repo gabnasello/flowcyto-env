@@ -2,11 +2,10 @@
 
 ## How it works
 
-- The ```Dockerfile``` creates a Docker Image on Ubuntu and installs miniconda. 
-- It creates a virtual environment called r-flowcyto from ```r_environment.ylm``` and install additional packages from ```install_r_packages.R```. 
-- It creates a virtual environment called py-flowcyto from ```py_environment.ylm```. 
-
-The full list of the R and Python packages installed is saved within the docker image in ```r_spec-conda-file.txt```  and```py_spec-conda-file.txt```
+- The ```Dockerfile``` creates a Docker Image based on dhammill/cytoexplorer:latest Image.
+- It changes default port for Rstudio server to 7878 and creates an ```rs``` command to access Rstudio server
+- It installs Python packages to run jupyterlab 
+- It adds R packages to the dhammill/cytoexplorer:latest Image
 
 ## Create a new image
 
