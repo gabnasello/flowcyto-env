@@ -1,4 +1,4 @@
-# Create a Docker Image with a conda environment for flow cytometry data analysis
+# Create a Docker Image for flow cytometry data analysis
 
 ## How it works
 
