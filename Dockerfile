@@ -1,6 +1,6 @@
 # rocker/r-ver:4.0.5 [https://github.com/rocker-org/rocker-versioned2/blob/master/dockerfiles/rstudio_4.0.5.Dockerfile]
 
-FROM dhammill/cytoexplorer:latest
+FROM dhammill/cytoexplorer:v1.1.0
 
 # Change default port for Rstudio server to 7878
 # Give the rstudio user sudo priviledges without asking for a password (only sudo commando from rstudio terminal)
@@ -10,7 +10,7 @@ RUN echo "www-port=7878" > /etc/rstudio/rserver.conf && \
     usermod -aG sudo rstudio && \
     echo 'rstudio ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-ADD launch_rstudio_server.sh .
+ADD scripts/launch_rstudio_server.sh /
 RUN echo "alias rs='bash /launch_rstudio_server.sh'" >> ~/.bashrc
 
 # Manually install nodejs (requirement for Jupyter Notebook)
@@ -32,12 +32,17 @@ ADD requirements.txt .
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1 && \
     apt-get update && apt-get install -yq python3-pip && \
     pip install -r requirements.txt &&\
-    jupyter labextension install @jupyterlab/toc &&\
-    echo "alias jl='export SHELL=/bin/bash; jupyter lab --allow-root --port=7777 --ip=0.0.0.0'" >> ~/.bashrc
+    jupyter labextension install @jupyterlab/toc
 
-# Install R packages
-#RUN R -e "install.packages('IRkernel',repos = 'http://cran.us.r-project.org')"
-#RUN R -e "IRkernel::installspec(user = FALSE)"
+# Set the jl command to create a JupytetLab shortcut
+ADD scripts/launch_jupyterlab.sh /
+RUN echo "alias jl='bash /launch_jupyterlab.sh'" >> ~/.bashrc
 
 ADD install_r_packages.R .
 RUN Rscript install_r_packages.R
+
+ADD scripts/entrypoint.sh /
+ADD scripts/message.sh /
+RUN echo "bash /message.sh" >> ~/.bashrc
+
+CMD ["/launch_jupyterlab.sh"]

@@ -7,4 +7,8 @@ rstudio-server restart
 
 
 printf "\n${GREEN}[RStudio Server]\n\n"
-printf "${NC}      To access the server, open this link in a browser: \n\n      http://127.0.0.1:7878 \n\n\n"
+printf "${NC}      To access the server, open this link in a browser: \n\n"
+
+echo -e " user: rstudio \n password: rstudio \n"
+echo -e 'http://'$HOST_NAME':'$RSPORT'\n\n'
+

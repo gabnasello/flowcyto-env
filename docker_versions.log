@@ -1,4 +1,11 @@
 -------------------------------
+v. 20230505
+
+Update Docker container from dhammill/cytoexplorer:v1.1.0
+
+Make Binder version
+
+-------------------------------
 v. 20220117
 
 New Docker container from dhammill/cytoexplorer:latest
