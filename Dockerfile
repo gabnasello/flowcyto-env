@@ -10,36 +10,42 @@ RUN echo "www-port=7878" > /etc/rstudio/rserver.conf && \
     usermod -aG sudo rstudio && \
     echo 'rstudio ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-ADD scripts/launch_rstudio_server.sh /
-RUN echo "alias rs='bash /launch_rstudio_server.sh'" >> ~/.bashrc
-
 # Manually install nodejs (requirement for Jupyter Notebook)
 # https://nodejs.org/en/download/
 # https://github.com/nodejs/node/blob/master/BUILDING.md#building-nodejs-on-supported-platforms
-RUN wget https://nodejs.org/dist/v16.13.1/node-v16.13.1.tar.gz && \
-    tar -xvf node-v16.13.1.tar.gz && \
-    cd node-v16.13.1 && \
-    ./configure && \
-    make -j4 && \
-    make install && \
-    make test-only && \
-    cd .. && \
-    rm node-v16.13.1.tar.gz 
+#RUN wget https://nodejs.org/dist/v16.13.1/node-v16.13.1.tar.gz && \
+#    tar -xvf node-v16.13.1.tar.gz && \
+#    cd node-v16.13.1 && \
+#    ./configure && \
+#    make -j4 && \
+#    make install && \
+#    make test-only && \
+#    cd .. && \
+#    rm node-v16.13.1.tar.gz 
 
+# Install Node.js and npm on Ubuntu
+# https://computingforgeeks.com/how-to-install-nodejs-on-ubuntu-debian-linux-mint/
+RUN apt update && apt -y upgrade && \
+    apt install -yq nodejs npm && \
+    apt -y install gcc g++ make
 
-ADD requirements.txt .
+ADD requirements.txt /
 # Set Python3 as default on ubuntu [https://dev.to/meetsohail/change-the-python3-default-version-in-ubuntu-1ekb]
-RUN update-alternatives --install /usr/bin/python python /usr/bin/python3 1 && \
-    apt-get update && apt-get install -yq python3-pip && \
-    pip install -r requirements.txt &&\
-    jupyter labextension install @jupyterlab/toc
+RUN apt-get update && apt-get install -yq python3-pip && \
+    pip3 install -r /requirements.txt
+    #jupyter labextension install @jupyterlab/toc
+
+ADD install_r_packages.R .
+RUN Rscript install_r_packages.R
+
+USER rstudio
+
+ADD scripts/launch_rstudio_server.sh /
+RUN echo "alias rs='bash /launch_rstudio_server.sh'" >> ~/.bashrc
 
 # Set the jl command to create a JupytetLab shortcut
 ADD scripts/launch_jupyterlab.sh /
 RUN echo "alias jl='bash /launch_jupyterlab.sh'" >> ~/.bashrc
-
-ADD install_r_packages.R .
-RUN Rscript install_r_packages.R
 
 ADD scripts/entrypoint.sh /
 ADD scripts/message.sh /

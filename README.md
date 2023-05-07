@@ -1,22 +1,45 @@
-# Create a Docker Image for flow cytometry data analysis
+# Docker Image for flow cytometry data analysis
 
-## How it works
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/gabnasello/flowcyto-env/HEAD)
 
-- The ```Dockerfile``` creates a Docker Image based on dhammill/cytoexplorer:latest Image.
-- It changes default port for Rstudio server to 7878 and creates an ```rs``` command to access Rstudio server
-- It installs Python packages to run jupyterlab 
-- It adds R packages to the dhammill/cytoexplorer:latest Image
+The Docker Image is based on [dhammill/cytoexplorer](https://hub.docker.com/r/dhammill/cytoexplorer)
 
-## Create a new image
+# Build the Docker Image
 
-First, clone the repo:
+From the project folder, run the command below:
 
-```git clone https://github.com/gabnasello/flowcyto-env.git``` 
+```bash build.sh```
 
-and run the following command to build the image (you might need sudo privileges):
+# Run Docker container
 
-```docker build --no-cache -t flowcyto-env:latest .```
+## docker-compose approach (recommended)
 
-Then you can follow the instructions in the [Docker repository](https://hub.docker.com/repository/docker/gnasello/flowcyto-env) to use the virtual environments.
+Be aware that the user ```rstudio``` within you Docker container won't share the same ID as the host user!
+
+From the project folder, run the command below:
+
+```docker-compose up -d```
+
+To connect to a container that is already running ("datascience" is the service name):
+
+```docker-compose exec flowcyto /bin/bash```
+
+Close the container with:
+
+```docker-compose down```
+
+## Alternative approach
+
+You can run the following command:
+
+```docker run -d -it --rm  -p 8888:8888 -p 7878:7878 --volume $HOME:/home/rstudio/volume --name flowcyto gnasello/flowcyto-env:latest```
+
+To connect to a container that is already running ("datascience" is the container name):
+
+```docker exec -it flowcyto /bin/bash```
+
+After use, you close the container with:
+
+```docker rm -f flowcyto```
 
 Enjoy flow cytometry!
