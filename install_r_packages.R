@@ -11,7 +11,7 @@ install.packages('ggpubr',repos = "http://cran.us.r-project.org")
 install.packages('ggsci',repos = "http://cran.us.r-project.org")
 
 # avoid update of other packages
-remotes::install_github("RGLab/cytoqc")
+# remotes::install_github("RGLab/cytoqc")
 
 # Install R kernel for Jupyter Notebook
 install.packages('IRdisplay',repos = 'http://cran.us.r-project.org')

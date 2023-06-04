@@ -1,4 +1,9 @@
 -------------------------------
+v. 2023-06-03
+
+Change default port for "jl" command to 7777
+
+-------------------------------
 v. 20230505
 
 Update Docker container from dhammill/cytoexplorer:v1.1.0

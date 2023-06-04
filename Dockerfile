@@ -2,6 +2,10 @@
 
 FROM dhammill/cytoexplorer:v1.1.0
 
+# Configure environment
+ENV DOCKER_IMAGE_NAME='flowcyto-env'
+ENV VERSION='2023-06-02' 
+
 # Change default port for Rstudio server to 7878
 # Give the rstudio user sudo priviledges without asking for a password (only sudo commando from rstudio terminal)
 EXPOSE 7878
@@ -9,19 +13,6 @@ EXPOSE 7878
 RUN echo "www-port=7878" > /etc/rstudio/rserver.conf && \
     usermod -aG sudo rstudio && \
     echo 'rstudio ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
-
-# Manually install nodejs (requirement for Jupyter Notebook)
-# https://nodejs.org/en/download/
-# https://github.com/nodejs/node/blob/master/BUILDING.md#building-nodejs-on-supported-platforms
-#RUN wget https://nodejs.org/dist/v16.13.1/node-v16.13.1.tar.gz && \
-#    tar -xvf node-v16.13.1.tar.gz && \
-#    cd node-v16.13.1 && \
-#    ./configure && \
-#    make -j4 && \
-#    make install && \
-#    make test-only && \
-#    cd .. && \
-#    rm node-v16.13.1.tar.gz 
 
 # Install Node.js and npm on Ubuntu
 # https://computingforgeeks.com/how-to-install-nodejs-on-ubuntu-debian-linux-mint/
@@ -38,17 +29,19 @@ RUN apt-get update && apt-get install -yq python3-pip && \
 ADD install_r_packages.R .
 RUN Rscript install_r_packages.R
 
-USER rstudio
+USER root
 
 ADD scripts/launch_rstudio_server.sh /
-RUN echo "alias rs='bash /launch_rstudio_server.sh'" >> ~/.bashrc
+RUN echo "alias rs='bash /launch_rstudio_server.sh'" >> /etc/bash.bashrc
 
 # Set the jl command to create a JupytetLab shortcut
 ADD scripts/launch_jupyterlab.sh /
-RUN echo "alias jl='bash /launch_jupyterlab.sh'" >> ~/.bashrc
+RUN echo "alias jl='bash /launch_jupyterlab.sh'" >> /etc/bash.bashrc
 
 ADD scripts/entrypoint.sh /
 ADD scripts/message.sh /
-RUN echo "bash /message.sh" >> ~/.bashrc
+RUN echo "bash /message.sh" >> /etc/bash.bashrc
 
-CMD ["/launch_jupyterlab.sh"]
+USER rstudio
+
+CMD ["/launch_jupyterlab.sh -p 8888"]
