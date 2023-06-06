@@ -1,7 +1,7 @@
 -------------------------------
-v. 2023-06-03
+v. 2023-06-04
 
-Change default port for "jl" command to 7777
+Make "jl" command available also to root
 
 -------------------------------
 v. 20230505

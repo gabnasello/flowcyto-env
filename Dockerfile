@@ -44,4 +44,4 @@ RUN echo "bash /message.sh" >> /etc/bash.bashrc
 
 USER rstudio
 
-CMD ["/launch_jupyterlab.sh -p 8888"]
+CMD ["/launch_jupyterlab.sh"]
