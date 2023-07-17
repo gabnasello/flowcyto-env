@@ -1,4 +1,11 @@
 -------------------------------
+v. 2023-07-06
+
+Remove message at bash script startup
+
+Remove "jl" and "rs" commands
+
+-------------------------------
 v. 2023-06-04
 
 Make "jl" command available also to root

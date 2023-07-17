@@ -2,18 +2,7 @@ version: '3'
 
 services:
   flowcyto:
-    image: gnasello/flowcyto-env:2023-05-06
-    build: .
+    image: gnasello/flowcyto-env:2023-07-16
     ports:
-      - $JLPORT:$JLPORT
-      - $RSPORT:7878
-    volumes:
-      - $HOME_RESEARCHER:/home/rstudio/volume # change the path before ":" with the volume you want to mount
-    working_dir: /home/rstudio
-    entrypoint: bash /entrypoint.sh
-    hostname: $HOST_NAME
-    environment:
-       - JLPORT=${JLPORT}
-       - RSPORT=${RSPORT}
-       - HOME_RESEARCHER=${HOME_RESEARCHER}
-       - HOST_NAME=${HOST_NAME}
+      - 8888:8888
+#    entrypoint: "jupyter lab --allow-root --port=8888 --ip=0.0.0.0"
