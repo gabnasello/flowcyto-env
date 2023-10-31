@@ -1,3 +1,5 @@
-nbconvert
+notebook
 jupyterlab
-jupyter_contrib_nbextensions
+scikit-learn 
+pandas 
+pyyaml

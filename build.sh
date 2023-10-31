@@ -1,5 +1,5 @@
 #!/bin/bash
 
-VESRION='2023-07-16'
+VESRION='2023-10-31'
 
 docker build --no-cache -t gnasello/flowcyto-env:$VESRION .
