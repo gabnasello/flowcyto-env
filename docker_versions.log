@@ -1,4 +1,9 @@
 -------------------------------
+v. 2023-11-20
+
+Install Spectral_Flow_Workflow requirements [install_r_packages.R]
+
+-------------------------------
 v. 2023-11-01
 
 Install the python package `FlowKit`

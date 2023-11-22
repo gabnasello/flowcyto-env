@@ -17,3 +17,16 @@ remotes::install_github("RGLab/cytoqc")
 devtools::install_github("DillonHammill/CytoExploreRData")
 # CytoExploreR 
 devtools::install_github("DillonHammill/CytoExploreR")
+
+# Spectral_Flow_Workflow requirements
+# [https://github.com/HdBraanker/Spectral_Flow_Workflow]
+BiocManager::install("flowViz")
+BiocManager::install("flowVS")
+BiocManager::install("FlowSOM")
+BiocManager::install("CATALYST")
+BiocManager::install("SingleCellExperiment")
+
+devtools::install_github('saeyslab/CytoNorm')
+install.packages("uwot",repos = 'http://cran.us.r-project.org')
+install.packages("knitr",repos = 'http://cran.us.r-project.org')
+install.packages("xlsx",repos = 'http://cran.us.r-project.org')

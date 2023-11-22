@@ -3,7 +3,7 @@ FROM lscr.io/linuxserver/webtop:amd64-ubuntu-kde-version-0f29909a
 
 # Configure environment
 ENV DOCKER_IMAGE_NAME='flowcyto-env'
-ENV VERSION='2023-11-01' 
+ENV VERSION='2023-11-20' 
 
 # title
 ENV TITLE='Flow Cytometry'
